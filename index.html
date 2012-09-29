@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>WebSocket test</title>
+<script>
+  if (window.MozWebSocket) {
+    window.WebSocket = window.MozWebSocket;
+  }
+
+  function openConnection() {
+      conn = new WebSocket('ws://localhost:7000/');    
+      conn.onopen = function () {
+        alert("open");
+        conn.send("hello");
+      };
+
+      conn.onmessage = function (event) {
+        alert(event.data);
+      };
+
+      conn.onclose = function (event) {
+      };
+    }
+
+  setTimeout(function () {
+    openConnection();
+  }, 1000);
+</script>
+</head>
+<body>
+</body>
+</html>
